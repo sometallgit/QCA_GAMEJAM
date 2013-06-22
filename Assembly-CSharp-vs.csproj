@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\SandCreator.cs" />
+     <Compile Include="Assets\SandToStatic.cs" />
      <Compile Include="Assets\Scripts\Animation\AnimationManager.cs" />
      <Compile Include="Assets\Scripts\Animation\SpriteAnim.cs" />
      <Compile Include="Assets\Scripts\FPSDisplay.cs" />
