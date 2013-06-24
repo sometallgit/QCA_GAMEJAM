@@ -9,15 +9,16 @@ public class SandParticleBehaviour : MonoBehaviour
 	private Rigidbody phys;
 	private bool sleep;
 	private float lifeTime;
+	public float lifeTimeCap = 5;
 	private float creationTime;
 	
 	// Use this for initialization
 	void Start () 
 	{
 		//Give the particle a random rotation when it is created
-		float randomAngle = Random.Range(0, 360);
-		Vector3 randomRot = new Vector3(0f, 0f, randomAngle);
-		gameObject.transform.localRotation = Quaternion.Euler(randomRot);
+		//float randomAngle = Random.Range(0, 360);
+		//Vector3 randomRot = new Vector3(0f, 0f, randomAngle);
+		//gameObject.transform.localRotation = Quaternion.Euler(randomRot);
 		
 		phys = GetComponent<Rigidbody>();
 		
@@ -25,15 +26,22 @@ public class SandParticleBehaviour : MonoBehaviour
 	}
 	
 	// Update is called once per frame
+	
 	void Update () 
 	{
 		lifeTime = Time.time - creationTime;
-		if (lifeTime > 5) phys.isKinematic = true;
-		if (phys.IsSleeping() && !phys.isKinematic)
+		if (phys.isKinematic == true) return;
+		if (lifeTime > lifeTimeCap)
 		{
-			Debug.Log("check");
 			//phys.Sleep();
 			phys.isKinematic = true;
+		}
+		if (phys.IsSleeping() && !phys.isKinematic)
+		{
+			//Debug.Log("check");
+			//phys.Sleep();
+			phys.isKinematic = true;
+			gameObject.isStatic = true;
 		}
 		else if (!phys.IsSleeping())
 		{
@@ -55,14 +63,14 @@ public class SandParticleBehaviour : MonoBehaviour
 		}
 
 	}
-	
+
 	public bool isAsleep()
 	{
 		return phys.IsSleeping();
 	}
 	
-	void OnCollisionStay(Collision col)
-	{
+//	void OnCollisionStay(Collision col)
+	//{
 		/*
 		SandParticleBehaviour s = col.gameObject.GetComponent<SandParticleBehaviour>();
 		if (s != null)
@@ -76,6 +84,6 @@ public class SandParticleBehaviour : MonoBehaviour
 			}
 		}
 		*/
-	}
+	//}
 	
 }
