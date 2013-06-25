@@ -8,16 +8,16 @@ public class SandCreator : MonoBehaviour
 	//This creates and deletes sand particles
 	
 	//Public Variables
-	public float AddSpeed; //The time in seconds between the creation of particles
+	public int AddCount; //The time in seconds between the creation of particles
 	public GameObject SandPrefab;
 	GameObject PARENT;
 	GameObject sPrefab;
 
-	private int sandCap = 1000;
+	public int sandCap = 2000;
 	private int sandCurr = 0;
 	
 	//Private Variables
-	private List<GameObject> sand = new List<GameObject>(); //The sand
+//	private List<GameObject> sand = new List<GameObject>(); //The sand
 	private float mouse1Axis; //LMB
 	private float mouse2Axis; //RMB
 	
@@ -27,6 +27,7 @@ public class SandCreator : MonoBehaviour
 		PARENT = GameObject.Find("SandParent");
 		sPrefab = Instantiate(SandPrefab) as GameObject;
 		sPrefab.name = SandPrefab.name;
+		sPrefab.transform.parent = this.transform;
 	}
 	
 	// Update is called once per frame
@@ -34,6 +35,7 @@ public class SandCreator : MonoBehaviour
 	{
 	
 		getInput();
+		createSand(AddCount);
 
 		if(mouse1Axis>0)
 		{
@@ -44,7 +46,7 @@ public class SandCreator : MonoBehaviour
 		{
 			//removeSand();
 		}
-		else createSand(5);
+		//else 
 	}
 	
 	//Grab the status of any input devices
@@ -59,7 +61,7 @@ public class SandCreator : MonoBehaviour
 	void createSand(int count)
 	{
 		sandCurr = ObjectPool.instance.pooledObjects[0].Count;
-		if(sandCurr<sandCap)
+		if(sandCurr+count<sandCap)
 		{
 			for(int i = 0;i<count;i++)
 			{

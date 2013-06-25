@@ -9,19 +9,12 @@ public class PControl : MonoBehaviour {
 
 	Vector3 move;
 
-	Transform trans;
-
 	float gravityX = 1.15F;
 	float accelX   = 5;
-	float turnMul  = 2;
 	float maxVelX   = 10;
 		
-	float accelY   = 10;
-	float tempVel  = 1.6F;
 	float gravityY = 150;
 	bool isJumping = false;
-	int jCount     = 0;
-	int jCountMax  = 20;
 	
 	float dTime;
 
@@ -37,7 +30,6 @@ public class PControl : MonoBehaviour {
 
 	void Start () {
 		control = GetComponent<CharacterController> ();
-		trans = this.transform;
 	}
 
 
@@ -45,8 +37,6 @@ public class PControl : MonoBehaviour {
 		dTime = Time.deltaTime;
 
 		updateMovement();
-
-		trans = this.transform;
 	}
 
 

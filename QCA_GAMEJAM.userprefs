@@ -7,8 +7,8 @@
       <File FileName="Assets\Scripts\Animation\AnimationManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\FPSDisplay.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Animation\SpriteAnim.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\PControl.cs" Line="41" Column="3" />
-      <File FileName="Assets\Glitch\GlitchEffect.cs" Line="24" Column="3" />
+      <File FileName="Assets\Scripts\Player\PControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Glitch\GlitchEffect.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

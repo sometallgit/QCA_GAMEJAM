@@ -58,6 +58,7 @@ public class ObjectPool : MonoBehaviour
     {
 
         instance = this;
+        instance.transform.parent =  GameObject.Find("SandParent").transform;
 
     }
 

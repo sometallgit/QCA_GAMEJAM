@@ -30,7 +30,8 @@ public class SandParticleBehaviour : MonoBehaviour
 	void Update () 
 	{
 		lifeTime = Time.time - creationTime;
-		if (phys.isKinematic == true) return;
+		if (phys.isKinematic == true&&lifeTime>lifeTimeCap*1.5) Destroy(gameObject);
+		//if(phys.isKinematic) return;
 		if (lifeTime > lifeTimeCap)
 		{
 			//phys.Sleep();
