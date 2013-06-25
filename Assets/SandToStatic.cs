@@ -4,9 +4,9 @@ using System.Collections;
 public class SandToStatic : MonoBehaviour 
 {
 	public int sandCount = 0;
+	public int sandTotal = 0;
 	private Collider asd;
 	private bool clear = false;
-	//300
 	
 	// Use this for initialization
 	void Start () 
@@ -17,7 +17,7 @@ public class SandToStatic : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (sandCount > 45) clear = true;
+		if (sandCount > sandTotal) clear = true;
 	}
 	
 	void OnTriggerStay(Collider col)
