@@ -18,6 +18,7 @@ public class PlaneSand : MonoBehaviour
 	private float divisionSize;
 	
 	private Vector3[] vertices;
+	private Vector3[] vertAbs;
 	
 	private GameObject[] collisionVolumes;
 	
@@ -62,6 +63,7 @@ public class PlaneSand : MonoBehaviour
 		//Move the finished plane back to where it started
 		transform.position = tempStartPos;
 		vertices = mesh.vertices;
+		vertAbs = vertices;
 
 	}
 	
@@ -197,7 +199,7 @@ public class PlaneSand : MonoBehaviour
 			collisionVolumes[i].transform.localRotation = Quaternion.Euler(0,0,angleOffset);
 			
 			//scale
-			Vector3 newScale = new Vector3(Vector3.Distance(pos1,pos2), 1, 1);
+			Vector3 newScale = new Vector3(Vector3.Distance(pos1,pos2), 3, 1);
 			collisionVolumes[i].transform.localScale = newScale;
 		}
 			
@@ -262,9 +264,40 @@ public class PlaneSand : MonoBehaviour
         }
         	
         mesh.vertices = vertices;
+		mesh.RecalculateBounds();
+	//	col.gameObject.GetComponent<SandParticleBehaviour>().setNewLifeTime(0.5f);
+		Destroy(col.gameObject);
 		//Destroy(col.gameObject);
 		//Debug.Log(transform.TransformPoint(vertices[0]));
 		
+		collisionVolumeOutOfDate = true;
+	}
+
+	public void decreaseVolume(Vector3 mPos)
+	{
+		float collidingPointX = mPos.x;
+		Vector3 decreaseAmount = new Vector3(0,-200,0);
+		
+        vertices = mesh.vertices;
+        normals = mesh.normals;
+
+		for (int i = 0;i < vertices.Length/2; i++) 
+		{
+			float falloff = 1;
+			
+			Vector3 currentSandPointPos = transform.TransformPoint(vertices[i]);
+			
+			float distance = collidingPointX - currentSandPointPos.x;
+			if (distance < 0f) distance = -distance;
+			
+			if(vertices[i].y>vertAbs[i].y*2) {
+				falloff = (Mathf.InverseLerp(1, 0, (distance/(sandLength * 0.1f))));
+          		vertices[i] += decreaseAmount * Time.deltaTime * falloff * 0.2f;
+          	}
+        }
+
+        mesh.vertices = vertices;
+		mesh.RecalculateBounds();
 		collisionVolumeOutOfDate = true;
 	}
 }

@@ -1,21 +1,28 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PlaneSand.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SetAlpha.cs">
     <Files>
+      <File FileName="Assets\Scripts\Player\PBucket.cs" Line="55" Column="5" />
       <File FileName="Assets\Scripts\Sand\SandParticleBehaviour.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Animation\SpriteAnim.cs" Line="1" Column="1" />
-      <File FileName="Assets\PlaneSand.cs" Line="57" Column="3" />
-      <File FileName="Assets\SandCreator.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Sand\SandSpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\CollisionVolumeParent.cs" Line="7" Column="4" />
-      <File FileName="Assets\CollisionVolumeBehaviour.cs" Line="8" Column="27" />
+      <File FileName="Assets\Scripts\Sand\CollisionVolumeBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Sand\PlaneSand.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PControl_NEW.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PLerp.cs" Line="13" Column="46" />
+      <File FileName="Assets\Scripts\GlowEffect.cs" Line="152" Column="54" />
+      <File FileName="Assets\Scripts\SetAlpha.cs" Line="6" Column="25" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="PlaneSand.cs" selected="True" />
+              <Node name="Scripts" expanded="True">
+                <Node name="Player" expanded="True" />
+                <Node name="SetAlpha.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>

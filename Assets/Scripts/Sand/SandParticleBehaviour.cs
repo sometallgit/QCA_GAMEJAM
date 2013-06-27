@@ -7,7 +7,6 @@ public class SandParticleBehaviour : MonoBehaviour
 	//This is the behaviour script for the sand particles
 	
 	private Rigidbody phys;
-	private bool sleep;
 	private float lifeTime;
 	public float lifeTimeCap = 5;
 	private float creationTime;
@@ -30,19 +29,20 @@ public class SandParticleBehaviour : MonoBehaviour
 	void Update () 
 	{
 		lifeTime = Time.time - creationTime;
-		if (phys.isKinematic == true&&lifeTime>lifeTimeCap*1.5) Destroy(gameObject);
+		if (phys.isKinematic == true&&lifeTime>lifeTimeCap*1.5)
 		//if(phys.isKinematic) return;
 		if (lifeTime > lifeTimeCap)
 		{
+			Destroy(gameObject);
 			//phys.Sleep();
-			phys.isKinematic = true;
+			//phys.isKinematic = true;
 		}
 		if (phys.IsSleeping() && !phys.isKinematic)
 		{
 			//Debug.Log("check");
 			//phys.Sleep();
-			phys.isKinematic = true;
-			gameObject.isStatic = true;
+			//phys.isKinematic = true;
+			//gameObject.isStatic = true;
 		}
 		else if (!phys.IsSleeping())
 		{
@@ -55,7 +55,6 @@ public class SandParticleBehaviour : MonoBehaviour
 				phys.velocity.y > -phys.sleepVelocity)
 			{
 				//Debug.Log("Sleep");
-				sleep = true;
 			}
 		}
 		else
@@ -64,7 +63,13 @@ public class SandParticleBehaviour : MonoBehaviour
 		}
 
 	}
-
+	
+	public void setNewLifeTime(float newTime)
+	{
+		lifeTimeCap = newTime;
+		creationTime += newTime;
+	}
+	
 	public bool isAsleep()
 	{
 		return phys.IsSleeping();

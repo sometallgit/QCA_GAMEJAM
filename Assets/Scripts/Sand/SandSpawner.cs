@@ -3,12 +3,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class SandSpawner : MonoBehaviour {
+public class SandSpawner : MonoBehaviour 
+{
 //This creates and deletes sand particles
 	
 	//Public Variables
 	public int AddCount=4;
 	public GameObject SandPrefab;
+	public Vector3 spawnDirection;
 	GameObject PARENT;
 	GameObject sPrefab;
 
@@ -48,6 +50,7 @@ public class SandSpawner : MonoBehaviour {
 			GameObject newSand = ObjectPool.instance.GetObjectForType("SandParticle",true);
 			newSand.transform.position = new Vector3(transform.position.x+(float)(i*0.3),transform.position.y, 0);
 			newSand.transform.parent = PARENT.transform;
+			newSand.GetComponent<Rigidbody>().AddForce(spawnDirection);
 			//newSand.SetActive(true);
 		}
 	}

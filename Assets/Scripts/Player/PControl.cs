@@ -6,6 +6,9 @@ using System.Collections;
 public class PControl : MonoBehaviour {
 
 	CharacterController control;
+	
+	private Camera main;
+	public double camSpeed = 0.5;
 
 	Vector3 move;
 
@@ -30,13 +33,21 @@ public class PControl : MonoBehaviour {
 
 	void Start () {
 		control = GetComponent<CharacterController> ();
+		main = Camera.mainCamera;
 	}
 
 
 	void Update () {
 		dTime = Time.deltaTime;
+		
+		Physics.IgnoreLayerCollision(8,9);
+				
+		main.transform.position = Vector3.Lerp(main.transform.position,new Vector3(transform.position.x,transform.position.y,main.transform.position.z),(float)camSpeed*dTime);
+		
+		transform.position = new Vector3(transform.position.x,transform.position.y,0);
 
 		updateMovement();
+		updateItems();
 	}
 
 
@@ -49,6 +60,8 @@ public class PControl : MonoBehaviour {
 	{
 		if(checkJump ())	move.x = checkWalk(move.x,gravityX);
 		else move.x = checkWalk(move.x,gravityX);
+		
+		Debug.Log (control.isGrounded);
 
 		move = new Vector3(move.x, move.y,0);
 		control.Move(move*dTime);
@@ -64,24 +77,12 @@ public class PControl : MonoBehaviour {
 			startJump =false;
 			maxJump   =false;
 			move.y    =0;
-			//jCount    =0;
 		}
 
 		if(Input.GetKeyUp("space")&&isJumping)
 		{
 			maxJump =true;
-			//accelY  =100;
-			//jCount  =jCountMax;
 		}
-
-// JUMP MECHANIC 1
-	//	if (Input.GetKey ("space") && jCount<jCountMax) {
-	//		move.y = accelY;
-	//		if(move.y<1000) accelY *= tempVel;
-	//		isJumping=true;
-	//		jCount++;
-	//		return true;
-	//	}
 
 // JUMP MECHANIC 2
 		if(Input.GetKey("space"))
@@ -102,6 +103,12 @@ public class PControl : MonoBehaviour {
 		}
 		else return false;
 	}
+	
+	void updateItems()
+	{
+		
+	}
+
 
 	float checkWalk(float vX,float gX)
 	{
