@@ -6,8 +6,8 @@ public class PControl_NEW : MonoBehaviour {
 	Rigidbody phys;
 	private Camera main;
 	
-	public Collider butt;
-	
+	private Vector3 botHit;
+
 	public double camSpeed = 12;
 	
 	private bool sliding;
@@ -26,12 +26,14 @@ public class PControl_NEW : MonoBehaviour {
 	public float yMag = 20;
 	
 	public float yVelCap = 200;
+	public float xVelCap = 200;
 	
 	public float gravity = -400;
 
 	void Start () {
 		phys = GetComponent<Rigidbody> ();
 		main = Camera.mainCamera;
+		botHit = new Vector3(0,transform.localScale.y/2,0);
 	}
 
 
@@ -44,6 +46,7 @@ public class PControl_NEW : MonoBehaviour {
 		
 		updateMove ();
 		
+				Debug.DrawRay(transform.position, botHit);
 		updateJump();
 		
 		main.transform.position = Vector3.Lerp(main.transform.position,new Vector3(transform.position.x,transform.position.y,main.transform.position.z),(float)camSpeed*dTime);
@@ -57,6 +60,7 @@ public class PControl_NEW : MonoBehaviour {
 	
 	void updateMove()
 	{
+		Mathf.Clamp(phys.velocity.x,0,xVelCap);
 		if(isJumping)phys.AddForce(xInput*xMag/2,0,0);
 		else phys.AddForce(xInput*xMag,0,0);
 		
@@ -68,14 +72,14 @@ public class PControl_NEW : MonoBehaviour {
 	
 	void updateJump()
 	{	
+		Mathf.Clamp(phys.velocity.y,0,yVelCap);
 		if(yInput&&!maxJump)	{
 			isJumping=true;
-			if(phys.velocity.y<yVelCap)	phys.AddForce(0,yMag,0);
-			else maxJump=true;
+			phys.AddForce(0,yMag,0);
+			if(phys.velocity.y>=yVelCap) maxJump=true;
 		}
 			phys.AddForce (0,gravity,0);
 	}
-	
 	
 	void getInput()
 	{
@@ -90,11 +94,13 @@ public class PControl_NEW : MonoBehaviour {
 	
 	void OnCollisionEnter (Collision col)
 	{
-		if(col.gameObject.name!="PlayerSprite")
-		{	
-			maxJump=false;
-			isJumping=false;
+		Ray ray = new Ray(transform.position,Vector3.down);
+		if(Physics.Raycast(ray,botHit.y))
+		{
+				maxJump=false;
+				isJumping=false;
 		}
+
 	}
 
 }
