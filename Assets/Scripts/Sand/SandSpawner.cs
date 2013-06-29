@@ -9,7 +9,7 @@ public class SandSpawner : MonoBehaviour
 	
 	//Public Variables
 	public int AddCount=4;
-	public GameObject SandPrefab;
+	GameObject SandPrefab;
 	public Vector3 spawnDirection;
 	GameObject PARENT;
 	GameObject sPrefab;
@@ -24,6 +24,7 @@ public class SandSpawner : MonoBehaviour
 	void Start () 
 	{
 		PARENT = GameObject.Find("SandParent");
+		SandPrefab = GameObject.Find ("SandParticle");
 		sPrefab = Instantiate(SandPrefab) as GameObject;
 		sPrefab.name = SandPrefab.name;
 		sPrefab.transform.parent = this.transform;

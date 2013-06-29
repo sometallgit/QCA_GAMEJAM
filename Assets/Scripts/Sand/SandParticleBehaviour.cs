@@ -41,7 +41,7 @@ public class SandParticleBehaviour : MonoBehaviour
 		{
 			//Debug.Log("check");
 			//phys.Sleep();
-			//phys.isKinematic = true;
+			phys.isKinematic = true;
 			//gameObject.isStatic = true;
 		}
 		else if (!phys.IsSleeping())
