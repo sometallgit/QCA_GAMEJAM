@@ -1,18 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SetAlpha.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PControl_NEW.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player\PBucket.cs" Line="55" Column="5" />
+      <File FileName="Assets\Scripts\Player\PBucket.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Sand\SandParticleBehaviour.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Animation\SpriteAnim.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Sand\SandSpawner.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Sand\CollisionVolumeBehaviour.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Sand\PlaneSand.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Player\PControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\PControl_NEW.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\PLerp.cs" Line="13" Column="46" />
-      <File FileName="Assets\Scripts\GlowEffect.cs" Line="152" Column="54" />
-      <File FileName="Assets\Scripts\SetAlpha.cs" Line="6" Column="25" />
+      <File FileName="Assets\Scripts\Player\PControl_NEW.cs" Line="77" Column="24" />
+      <File FileName="Assets\Scripts\Player\PLerp.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GlowEffect.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SetAlpha.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Sand\ObjectPool.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,8 +21,9 @@
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Player" expanded="True" />
-                <Node name="SetAlpha.cs" selected="True" />
+                <Node name="Player" expanded="True">
+                  <Node name="PControl_NEW.cs" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>

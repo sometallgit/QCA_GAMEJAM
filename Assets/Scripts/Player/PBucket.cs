@@ -9,6 +9,7 @@ public class PBucket : MonoBehaviour {
 
 	private GameObject PARENT;
 	private GameObject sandParent;
+	private Plane sandPlane;
 	
 	public float sandCount = 0;
 	public float sandMax   = 1600;
@@ -22,17 +23,16 @@ public class PBucket : MonoBehaviour {
 	void Start () {
 		PARENT = GameObject.Find("Player");
 		sandParent = GameObject.Find("SandParent");
-	}
+		}
 	
 	// Update is called once per frame
 	void Update () {
-		
+				
 		getInput ();
 		if(mouse1Axis)
 		{
 			if(sandCount>0){
 				addSand(6);
-				sandCount -=6;
 			}
 		}
 		if(mouse2Axis)
@@ -47,16 +47,20 @@ public class PBucket : MonoBehaviour {
 		//Grab the mouse pos to get the pos to add the sand particle on the screen
 		//Convert screen coordinates to world space
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		Vector3 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		//Debug.DrawRay (ray.origin, ray.direction * 40, Color.yellow);
+		
+		Vector3 mPos = ray.origin + (ray.direction*30);
+		
 		float dist = Vector3.Distance(transform.position,mPos);
-
+					
 		if(dist<mouseRange){
 			for(int i = 0;i<count;i++)
 			{
 				GameObject newSand = ObjectPool.instance.GetObjectForType("SandParticle",true);
-				newSand.transform.position = new Vector3(ray.origin.x+(float)(1-i*0.1), ray.origin.y, 0);
+				newSand.transform.position = new Vector3(mPos.x+(float)(1-i*0.1), mPos.y, 0);
 				newSand.transform.parent = sandParent.transform;
 			}
+			sandCount -=count;
 		}
 	}
 	
@@ -78,8 +82,7 @@ public class PBucket : MonoBehaviour {
 					mouse2Recheck=true;
 					sandCount+=sandInc;
 				}
-			}
-				
+			}	
 		}
 	}
 
